@@ -30,25 +30,6 @@ function linkAction(){
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
-/*==================== ACCORDION SKILLS ====================*/
-const skillsContent = document.getElementsByClassName('skills__content'),
-      skillsHeader = document.querySelectorAll('.skills__header')
-
-function toggleSkills(){
-    let itemClass = this.parentNode.className
-    
-    for(i = 0; i < skillsContent.length; i++){
-        skillsContent[i].className = 'skills__content skills__close'
-    }
-    if(itemClass === 'skills__content skills__close'){
-        this.parentNode.className = 'skills__content skills__open'
-    }
-}
-
-skillsHeader.forEach((el) => {
-    el.addEventListener('click', toggleSkills)
-})
-
 /*==================== QUALIFICATION TABS ====================*/
 const tabs = document.querySelectorAll('[data-target]'),
 tabContents = document.querySelectorAll('[data-content]')
@@ -190,3 +171,51 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== ROLE TYPING EFFECT ====================*/
+const roleText = document.getElementById('role-text')
+
+if (roleText) {
+    const roles = ['Software Engineer', 'Distributed Systems & Observability', 'AI-First Approach']
+    let roleIndex = 0, charIndex = 0, deleting = false
+
+    function typeRole() {
+        const current = roles[roleIndex]
+
+        if (!deleting) {
+            charIndex++
+            roleText.textContent = current.slice(0, charIndex)
+            if (charIndex === current.length) {
+                deleting = true
+                setTimeout(typeRole, 1800)
+                return
+            }
+        } else {
+            charIndex--
+            roleText.textContent = current.slice(0, charIndex)
+            if (charIndex === 0) {
+                deleting = false
+                roleIndex = (roleIndex + 1) % roles.length
+            }
+        }
+        setTimeout(typeRole, deleting ? 40 : 80)
+    }
+    typeRole()
+}
+
+/*==================== SCROLL REVEAL ====================*/
+const revealTargets = document.querySelectorAll(
+    '.section__tag, .section__title, .section__subtitle, .about__description, .about__info, .about__buttons, .skills__content, .qualification__tabs, .qualification__data, .certifications__content, .contact__information, .contact__form'
+)
+revealTargets.forEach(el => el.classList.add('reveal'))
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--show')
+            revealObserver.unobserve(entry.target)
+        }
+    })
+}, { threshold: .15 })
+
+revealTargets.forEach(el => revealObserver.observe(el))
