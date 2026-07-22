@@ -637,7 +637,14 @@ body.dark-theme .header {
 
 .about__description {
   text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: var(--mb-2-5);
+}
+
+.about__description p {
+  margin-bottom: var(--mb-1);
 }
 
 .about__description strong {
@@ -892,6 +899,30 @@ body.dark-theme .header {
   height: 100%;
   background: linear-gradient(var(--first-color), var(--accent-color));
   transform: translate(5px, -7px);
+}
+
+/* The desktop timeline alternates cards left/right of a centered track via
+   a 3-column grid (1fr track 1fr), which never collapsed for narrow
+   screens — cards were squeezed into a sliver of the viewport with most of
+   the width sitting empty. Below 768px, switch to a simple 2-column
+   left-rail timeline (track, then card) instead, forcing consistent
+   ordering since the desktop markup alternates which side the empty
+   spacer/card sit on. */
+@media screen and (max-width: 768px) {
+  .qualification__data {
+    grid-template-columns: max-content 1fr;
+    column-gap: 1rem;
+  }
+  .qualification__data > div:empty {
+    display: none;
+  }
+  .qualification__track {
+    order: 1;
+  }
+  .qualification__card {
+    order: 2;
+    padding: 1.1rem 1.25rem;
+  }
 }
 
 .qualification [data-content] {
@@ -1524,7 +1555,6 @@ body.dark-theme .certifications__img:not(.ansible__img) {
     order: 1;
     justify-self: center;
   }
-  .about__container,
   .skills__container,
   .portfolio__content,
   .project__container,
