@@ -507,21 +507,21 @@
                                 <div class="qualification__detail">
                                     <i class="uil uil-arrow-right"></i>
                                     <span>
-                                        Deployed and configured an open-source distributed system (Loki), tuning read, write, and backend components to support multi-tenant log aggregation and persistence to object storage
+                                        Architected an event-driven onboarding platform on Kubernetes with Kafka and MongoDB, cutting onboarding time from 4 hours to 15 minutes across thousands of applications
                                     </span>
                                 </div>
 
                                 <div class="qualification__detail">
                                     <i class="uil uil-arrow-right"></i>
                                     <span>
-                                        Built a Kafka-consuming OpenTelemetry Collector service to stream high-throughput log data into the storage pipeline, supporting 1,000+ teams globally
+                                        Built an AI-powered troubleshooting agent that searches cross-service logs to pinpoint root cause from a request ID, cutting MTTR by 35%
                                     </span>
                                 </div>
 
                                 <div class="qualification__detail">
                                     <i class="uil uil-arrow-right"></i>
                                     <span>
-                                        Implemented Redis caching to optimize query performance, reducing query latency by 40%
+                                        Deployed Loki for multi-tenant log aggregation and built a Kafka-consuming OpenTelemetry Collector to stream high-throughput logs into object storage for 1,000+ teams globally
                                     </span>
                                 </div>
 
@@ -535,42 +535,14 @@
                                 <div class="qualification__detail">
                                     <i class="uil uil-arrow-right"></i>
                                     <span>
-                                        Architected an event-driven onboarding platform on Kubernetes, using Kafka for asynchronous processing and MongoDB for state tracking, cutting onboarding time from 4 hours to 15 minutes (75% reduction) across several thousand applications
+                                        Optimized query performance with Redis caching, cutting latency by 40%, and built REST APIs consumed by 1,000+ teams handling 10K+ requests/day
                                     </span>
                                 </div>
 
                                 <div class="qualification__detail">
                                     <i class="uil uil-arrow-right"></i>
                                     <span>
-                                        Migrated 50+ scheduled jobs from GitLab to Kubernetes CronJobs, standardizing secret management via HashiCorp Vault and establishing observability standards across the platform
-                                    </span>
-                                </div>
-
-                                <div class="qualification__detail">
-                                    <i class="uil uil-arrow-right"></i>
-                                    <span>
-                                        Developed REST APIs with session and token-based authentication, consumed by 1,000+ internal teams, handling 10K+ requests/day
-                                    </span>
-                                </div>
-
-                                <div class="qualification__detail">
-                                    <i class="uil uil-arrow-right"></i>
-                                    <span>
-                                        Maintained a centralized Helm chart repository with environment-specific values, using ArgoCD for GitOps-based deployment across multiple environments and regions
-                                    </span>
-                                </div>
-
-                                <div class="qualification__detail">
-                                    <i class="uil uil-arrow-right"></i>
-                                    <span>
-                                        Built an AI-powered troubleshooting agent (AWS Strands Agents) that orchestrates custom tools to search cross-service logs and pinpoint root cause from a request ID, reducing MTTR by 35%
-                                    </span>
-                                </div>
-
-                                <div class="qualification__detail">
-                                    <i class="uil uil-arrow-right"></i>
-                                    <span>
-                                        Led a technical initiative to eliminate tech debt and improve reliability of scheduled workloads, collaborating with 4 engineers across the full development lifecycle
+                                        Led a reliability initiative with 4 engineers to eliminate tech debt across scheduled workloads, standardizing secret management with Vault and GitOps deployments with ArgoCD
                                     </span>
                                 </div>
 
@@ -589,23 +561,23 @@
                                     </div>
                                     <div class="qualification__detail">
                                         <i class="uil uil-arrow-right"></i>
-                                        <span>Containerized legacy Python FastAPI applications and migrated them to Kubernetes, packaging deployments as Helm charts for EKS</span>
+                                        <span>Migrated legacy Python FastAPI applications to Kubernetes on EKS, containerizing and packaging deployments as Helm charts</span>
                                     </div>
                                     <div class="qualification__detail">
                                         <i class="uil uil-arrow-right"></i>
-                                        <span>Provisioned and managed EKS clusters via Terraform, including networking and infrastructure configuration across development, QA, and production environments</span>
+                                        <span>Provisioned and managed EKS clusters via Terraform across development, QA, and production environments</span>
                                     </div>
                                     <div class="qualification__detail">
                                         <i class="uil uil-arrow-right"></i>
-                                        <span>Built standardized CI/CD pipeline templates with integrated unit and integration testing, automating deployments to AWS EKS</span>
+                                        <span>Built standardized CI/CD pipeline templates with integrated testing, automating deployments to AWS EKS</span>
                                     </div>
                                     <div class="qualification__detail">
                                         <i class="uil uil-arrow-right"></i>
-                                        <span>Instrumented applications for full-stack observability, building Elastic (ELK) dashboards and alerting</span>
+                                        <span>Instrumented applications for full-stack observability with Elastic (ELK) dashboards and alerting</span>
                                     </div>
                                     <div class="qualification__detail">
                                         <i class="uil uil-arrow-right"></i>
-                                        <span>Led on-call incident response and blameless postmortems, maintaining operational runbooks and communicating directly with customers during production issues</span>
+                                        <span>Led on-call incident response and blameless postmortems, maintaining runbooks and communicating directly with customers during production issues</span>
                                     </div>
                                 </div>
                                 <div class="qualification__track">
@@ -889,12 +861,15 @@
                         <i class="uil uil-times"></i>
                     </button>
                 </div>
-                <iframe
-                    src="https://digital-twin-euc6.onrender.com"
-                    class="twin-widget__frame"
-                    title="Geethika's Digital Twin chat"
-                    loading="lazy"
-                ></iframe>
+                <div class="twin-widget__frame-wrap" id="twin-widget-frame-wrap">
+                    <iframe
+                        src="https://digital-twin-euc6.onrender.com"
+                        class="twin-widget__frame"
+                        id="twin-widget-frame"
+                        title="Geethika's Digital Twin chat"
+                        loading="lazy"
+                    ></iframe>
+                </div>
             </div>
 
             <button type="button" class="twin-widget__button" id="twin-widget-button" aria-label="Open chat with my AI twin">

@@ -224,12 +224,15 @@ revealTargets.forEach(el => revealObserver.observe(el))
 const twinWidgetButton = document.getElementById('twin-widget-button'),
     twinWidgetPanel = document.getElementById('twin-widget-panel'),
     twinWidgetClose = document.getElementById('twin-widget-close'),
-    navAiTwin = document.getElementById('nav-ai-twin')
+    navAiTwin = document.getElementById('nav-ai-twin'),
+    twinWidgetFrameWrap = document.getElementById('twin-widget-frame-wrap'),
+    twinWidgetFrame = document.getElementById('twin-widget-frame')
 
 const toggleTwinWidget = (open) => {
     const shouldOpen = open ?? !twinWidgetPanel.classList.contains('show-widget')
     twinWidgetPanel.classList.toggle('show-widget', shouldOpen)
     twinWidgetButton.classList.toggle('is-open', shouldOpen)
+    if (shouldOpen) scaleTwinFrame()
 }
 
 twinWidgetButton.addEventListener('click', () => toggleTwinWidget())
@@ -238,4 +241,25 @@ twinWidgetClose.addEventListener('click', () => toggleTwinWidget(false))
 navAiTwin.addEventListener('click', (e) => {
     e.preventDefault()
     toggleTwinWidget(true)
+})
+
+// The embedded app's own layout is designed for its natural ~820px width.
+// WebKit doesn't reliably apply that app's mobile @media breakpoints inside
+// a cross-origin iframe (window.innerWidth reports the real narrow width,
+// but CSS media queries evaluate against a wider assumed layout), so instead
+// of fighting that, the iframe always renders at its natural 820px width and
+// gets scaled down here with a CSS transform to fit the widget box.
+const TWIN_FRAME_REF_WIDTH = 820
+
+const scaleTwinFrame = () => {
+    const wrapWidth = twinWidgetFrameWrap.clientWidth
+    const wrapHeight = twinWidgetFrameWrap.clientHeight
+    if (!wrapWidth || !wrapHeight) return
+    const scale = wrapWidth / TWIN_FRAME_REF_WIDTH
+    twinWidgetFrame.style.transform = `scale(${scale})`
+    twinWidgetFrame.style.height = `${wrapHeight / scale}px`
+}
+
+window.addEventListener('resize', () => {
+    if (twinWidgetPanel.classList.contains('show-widget')) scaleTwinFrame()
 })

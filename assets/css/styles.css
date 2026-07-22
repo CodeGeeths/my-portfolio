@@ -1029,8 +1029,8 @@ body.dark-theme .certifications__img:not(.ansible__img) {
   position: fixed;
   right: 1.5rem;
   bottom: 6rem;
-  width: min(400px, calc(100vw - 2rem));
-  height: min(640px, calc(100vh - 8rem));
+  width: min(560px, calc(100vw - 2rem));
+  height: min(720px, calc(100vh - 8rem));
   background-color: var(--container-color);
   border: 1px solid var(--border-color);
   border-radius: 1.25rem;
@@ -1087,10 +1087,28 @@ body.dark-theme .certifications__img:not(.ansible__img) {
   opacity: 1;
 }
 
-.twin-widget__frame {
+.twin-widget__frame-wrap {
   flex: 1;
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* WebKit (Safari/iOS) doesn't reliably respect a cross-origin iframe's own
+   viewport meta tag or @media breakpoints — window.innerWidth inside the
+   iframe reports the real narrow width, but CSS media queries evaluate
+   against a wider assumed layout, so the app's mobile styles never fire
+   and it renders at desktop scale, oversized and clipped. Forcing a fixed
+   "desktop" width here (matching the app's own max-width) makes WebKit's
+   rendering deterministic, then main.js scales the whole thing down with
+   a CSS transform to fit the actual widget size — sidestepping the buggy
+   viewport detection entirely instead of fighting it.  */
+.twin-widget__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 820px;
   border: none;
+  transform-origin: top left;
 }
 
 /* Below 768px this template pins the whole .header to the bottom of the
