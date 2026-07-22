@@ -57,7 +57,7 @@
                         </li>
 
                         <li class="nav__item">
-                            <a href="#twin-chat" class="nav__link">
+                            <a href="#" class="nav__link" id="nav-ai-twin">
                                 <i class="uil uil-robot nav__icon"></i> AI Twin
                             </a>
                         </li>
@@ -769,25 +769,9 @@
                 </div>
             </section> -->
 
-            <!--==================== AI TWIN CHAT ====================-->
-            <section class="twin-chat section" id="twin-chat">
-                <span class="section__tag">05 · AI Twin</span>
-                <h2 class="section__title">Chat with My AI Twin</h2>
-                <span class="section__subtitle">Ask it anything about my career</span>
-
-                <div class="twin-chat__container container">
-                    <iframe
-                        src="https://digital-twin-euc6.onrender.com"
-                        class="twin-chat__frame"
-                        title="Geethika's Digital Twin chat"
-                        loading="lazy"
-                    ></iframe>
-                </div>
-            </section>
-
             <!--==================== CONTACT ME ====================-->
             <section class="contact section" id="contact">
-                <span class="section__tag">06 · Contact</span>
+                <span class="section__tag">05 · Contact</span>
                 <h2 class="section__title">Contact Me</h2>
                 <span class="section__subtitle">Get in touch</span>
 
@@ -893,6 +877,31 @@
         <a href="#" class="scrollup" id="scroll-top">
             <i class="uil uil-arrow-up scrollup__icon"></i>
         </a>
+
+        <!--==================== AI TWIN CHAT WIDGET ==================-->
+        <div class="twin-widget">
+            <div class="twin-widget__panel" id="twin-widget-panel">
+                <div class="twin-widget__header">
+                    <span class="twin-widget__title">
+                        <i class="uil uil-robot"></i> Chat with My AI Twin
+                    </span>
+                    <button type="button" class="twin-widget__close" id="twin-widget-close" aria-label="Close chat">
+                        <i class="uil uil-times"></i>
+                    </button>
+                </div>
+                <iframe
+                    src="https://digital-twin-euc6.onrender.com"
+                    class="twin-widget__frame"
+                    title="Geethika's Digital Twin chat"
+                    loading="lazy"
+                ></iframe>
+            </div>
+
+            <button type="button" class="twin-widget__button" id="twin-widget-button" aria-label="Open chat with my AI twin">
+                <i class="uil uil-comment-alt-message twin-widget__icon-open"></i>
+                <i class="uil uil-times twin-widget__icon-close"></i>
+            </button>
+        </div>
 
         <!--==================== SWIPER JS ====================-->
         <script src="assets/js/swiper-bundle.min.js"></script>

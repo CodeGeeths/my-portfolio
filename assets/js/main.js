@@ -219,3 +219,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: .15 })
 
 revealTargets.forEach(el => revealObserver.observe(el))
+
+/*==================== AI TWIN CHAT WIDGET ====================*/
+const twinWidgetButton = document.getElementById('twin-widget-button'),
+    twinWidgetPanel = document.getElementById('twin-widget-panel'),
+    twinWidgetClose = document.getElementById('twin-widget-close'),
+    navAiTwin = document.getElementById('nav-ai-twin')
+
+const toggleTwinWidget = (open) => {
+    const shouldOpen = open ?? !twinWidgetPanel.classList.contains('show-widget')
+    twinWidgetPanel.classList.toggle('show-widget', shouldOpen)
+    twinWidgetButton.classList.toggle('is-open', shouldOpen)
+}
+
+twinWidgetButton.addEventListener('click', () => toggleTwinWidget())
+twinWidgetClose.addEventListener('click', () => toggleTwinWidget(false))
+
+navAiTwin.addEventListener('click', (e) => {
+    e.preventDefault()
+    toggleTwinWidget(true)
+})

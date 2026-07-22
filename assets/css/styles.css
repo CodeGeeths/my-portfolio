@@ -984,29 +984,131 @@ body.dark-theme .certifications__img:not(.ansible__img) {
     filter: brightness(0) invert(1);
 }
 
-/*==================== AI TWIN CHAT ====================*/
-.twin-chat__container {
-  max-width: 820px;
-}
-
-.twin-chat__frame {
-  width: 100%;
-  height: 640px;
-  border: 1px solid var(--border-color);
-  border-radius: 1rem;
-  background-color: var(--container-color);
-  box-shadow: var(--shadow-sm);
+/*==================== AI TWIN CHAT WIDGET ====================*/
+.twin-widget__button {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-tooltip);
   transition: .3s;
 }
 
-.twin-chat__frame:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--first-color);
+.twin-widget__button:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
 }
 
-@media screen and (max-width: 576px) {
-  .twin-chat__frame {
-    height: 520px;
+.twin-widget__button i {
+  font-size: 1.6rem;
+  color: #FFF;
+}
+
+.twin-widget__icon-close {
+  display: none;
+}
+
+.twin-widget__button.is-open .twin-widget__icon-open {
+  display: none;
+}
+
+.twin-widget__button.is-open .twin-widget__icon-close {
+  display: inline-block;
+}
+
+.twin-widget__panel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 6rem;
+  width: min(400px, calc(100vw - 2rem));
+  height: min(640px, calc(100vh - 8rem));
+  background-color: var(--container-color);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(.97);
+  transform-origin: bottom right;
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+  z-index: var(--z-tooltip);
+}
+
+.twin-widget__panel.show-widget {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.twin-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--accent-gradient);
+  flex-shrink: 0;
+}
+
+.twin-widget__title {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: #FFF;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.twin-widget__close {
+  background: transparent;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  opacity: .85;
+  transition: opacity .2s;
+}
+
+.twin-widget__close:hover {
+  opacity: 1;
+}
+
+.twin-widget__frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+/* Below 768px this template pins the whole .header to the bottom of the
+   screen (see the min-width:768px override further down), so the widget
+   has to sit above that bar instead of the viewport edge. */
+@media screen and (max-width: 767px) {
+  .twin-widget__button {
+    right: 1rem;
+    bottom: calc(var(--header-height) + 1rem);
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .twin-widget__panel {
+    right: 1rem;
+    bottom: calc(var(--header-height) + 4.75rem);
+    width: calc(100vw - 2rem);
+    height: min(65vh, 560px);
   }
 }
 
