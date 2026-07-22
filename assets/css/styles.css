@@ -999,7 +999,7 @@ body.dark-theme .certifications__img:not(.ansible__img) {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: var(--shadow-md);
-  z-index: var(--z-tooltip);
+  z-index: calc(var(--z-fixed) + 10);
   transition: .3s;
 }
 
@@ -1043,7 +1043,7 @@ body.dark-theme .certifications__img:not(.ansible__img) {
   transform: translateY(16px) scale(.97);
   transform-origin: bottom right;
   transition: opacity .25s ease, transform .25s ease, visibility .25s;
-  z-index: var(--z-tooltip);
+  z-index: calc(var(--z-fixed) + 10);
 }
 
 .twin-widget__panel.show-widget {
@@ -1093,9 +1093,9 @@ body.dark-theme .certifications__img:not(.ansible__img) {
   border: none;
 }
 
-/* Below 768px this template pins the whole .header to the bottom of the
-   screen (see the min-width:768px override further down), so the widget
-   has to sit above that bar instead of the viewport edge. */
+/* Below 768px this template also pins the whole .header to the bottom of
+   the screen (see the min-width:768px override further down), so the
+   button has to clear that bar instead of sitting at the viewport edge. */
 @media screen and (max-width: 767px) {
   .twin-widget__button {
     right: 1rem;
@@ -1104,11 +1104,21 @@ body.dark-theme .certifications__img:not(.ansible__img) {
     height: 3.25rem;
   }
 
+  /* Mobile browsers don't reliably scale a cross-origin iframe's internal
+     content to fit a small floating box (the chat renders at its own
+     desktop-ish size and gets clipped/scrolled instead of shrinking).
+     Going full-screen sidesteps that mismatch entirely — same approach
+     Intercom/Drift/Crisp use for their widgets on mobile. */
   .twin-widget__panel {
-    right: 1rem;
-    bottom: calc(var(--header-height) + 4.75rem);
-    width: calc(100vw - 2rem);
-    height: min(65vh, 560px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    border: none;
+    border-radius: 0;
+    transform: none;
   }
 }
 
